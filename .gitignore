@@ -8,3 +8,21 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Environment variables (contains secrets!)
+.env
+
+# Log files
+logs/
+*.log
+
+# Data files
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Config files (keep .example and templates, ignore custom configs)
+config/zenoh_config_*.json
+!config/zenoh_config_*.json.example
+

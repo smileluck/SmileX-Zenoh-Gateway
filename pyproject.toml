@@ -1,9 +1,20 @@
 [project]
 name = "smilex-zenoh-gateway"
 version = "0.1.0"
-description = "Add your description here"
+description = "基于 Zenoh 技术的机器人通信与云端控制平台"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "eclipse-zenoh>=1.8.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "cryptography>=43.0.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    "python-multipart>=0.0.12",
+    "aiosqlite>=0.20.0",
 ]
+
+[tool.uv]
+dev-dependencies = []
+
