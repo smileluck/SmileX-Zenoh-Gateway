@@ -13,7 +13,9 @@ from dataclasses import dataclass
 from enum import Enum
 
 from common.config.settings import settings
-from common.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 class TokenType(Enum):

@@ -17,10 +17,6 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     debug: bool = True
     
-    # Zenoh 配置
-    zenoh_connect: Optional[str] = None
-    zenoh_listen: Optional[str] = "tcp/0.0.0.0:7447"
-    
     # API 配置
     api_host: str = "0.0.0.0"
     api_port: int = 8000

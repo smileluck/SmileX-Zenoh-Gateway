@@ -204,10 +204,7 @@ class ZenohConfigManager:
             完整的 zenoh 配置字典
         """
         config = self.load_config()
-        
-        if env_config:
-            config = self.merge_env_config(config, env_config)
-        
+                
         return config
 
     def save_config(self, config: Dict[str, Any]):

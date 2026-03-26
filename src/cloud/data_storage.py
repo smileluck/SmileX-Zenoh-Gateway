@@ -11,7 +11,9 @@ from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
-from common.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 @dataclass

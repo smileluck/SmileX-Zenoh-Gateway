@@ -7,7 +7,9 @@ import time
 import uuid
 
 from common.config.settings import settings
-from common.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 from common.core import ZenohSession, DeviceManager, Message, MessageType
 
 

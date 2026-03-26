@@ -82,12 +82,7 @@ class ZenohSession:
             try:
                 logger.info("正在连接到 Zenoh 网络...")
                 
-                env_config = {
-                    "zenoh_connect": settings.zenoh_connect,
-                    "zenoh_listen": settings.zenoh_listen
-                }
-                
-                zenoh_config_dict = self._config_manager.get_zenoh_config(env_config)
+                zenoh_config_dict = self._config_manager.get_zenoh_config()
                 
                 config = self._dict_to_zenoh_config(zenoh_config_dict)
                 
@@ -101,7 +96,7 @@ class ZenohSession:
                 logger.error(f"Zenoh 会话连接失败: {e}", exc_info=True)
                 self._session = None
                 return False
-    
+
     def _dict_to_zenoh_config(self, config_dict: Dict[str, Any]) -> zenoh.Config:
         """
         将字典转换为 zenoh.Config 对象
@@ -117,50 +112,27 @@ class ZenohSession:
         try:
             if "mode" in config_dict:
                 config.insert_json5("mode", json.dumps(config_dict["mode"]))
-            
+
             if "listen" in config_dict and "endpoints" in config_dict["listen"]:
                 endpoints = config_dict["listen"]["endpoints"]
                 if endpoints:
-                    config.listen.endpoints = endpoints
-            
+                    config.insert_json5("listen/endpoints", json.dumps(endpoints))
+
             if "connect" in config_dict and "endpoints" in config_dict["connect"]:
                 endpoints = config_dict["connect"]["endpoints"]
                 if endpoints:
-                    config.connect.endpoints = endpoints
+                    config.insert_json5("connect/endpoints", json.dumps(endpoints))
             
             if "scouting" in config_dict:
-                if "multicast" in config_dict["scouting"]:
-                    mc = config_dict["scouting"]["multicast"]
-                    if "enabled" in mc:
-                        config.scouting.multicast.enabled = mc["enabled"]
-                    if "interface" in mc:
-                        config.scouting.multicast.interface = mc["interface"]
-                    if "address" in mc:
-                        config.scouting.multicast.address = mc["address"]
-                
-                if "gossip" in config_dict["scouting"]:
-                    gossip = config_dict["scouting"]["gossip"]
-                    if "enabled" in gossip:
-                        config.scouting.gossip.enabled = gossip["enabled"]
-                    if "seed" in gossip:
-                        config.scouting.gossip.seed = gossip["seed"]
+                for scout_key, scout_val in config_dict["scouting"].items():
+                    config.insert_json5(f"scouting/{scout_key}", json.dumps(scout_val))
             
             if "transport" in config_dict:
-                if "link" in config_dict["transport"]:
-                    if "tcp" in config_dict["transport"]["link"]:
-                        tcp = config_dict["transport"]["link"]["tcp"]
-                        if "accept_timeout" in tcp:
-                            config.transport.link.tcp.accept_timeout = tcp["accept_timeout"]
-                        if "accept_backlog" in tcp:
-                            config.transport.link.tcp.accept_backlog = tcp["accept_backlog"]
-                        if "max_sessions" in tcp:
-                            config.transport.link.tcp.max_sessions = tcp["max_sessions"]
+                for transport_key, transport_val in config_dict["transport"].items():
+                    config.insert_json5(f"transport/{transport_key}", json.dumps(transport_val))
             
             if "timestamping" in config_dict:
-                if "enabled" in config_dict["timestamping"]:
-                    config.timestamping.enabled = config_dict["timestamping"]["enabled"]
-                if "source" in config_dict["timestamping"]:
-                    config.timestamping.source = config_dict["timestamping"]["source"]
+                config.insert_json5("timestamping", json.dumps(config_dict["timestamping"]))
             
         except Exception as e:
             logger.warning(f"配置转换过程中部分配置可能未生效: {e}")

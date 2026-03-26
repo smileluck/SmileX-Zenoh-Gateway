@@ -10,7 +10,7 @@ from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from common.config.settings import settings
-from common.utils.logger import logger
+from logging import getLogger
 from common.core import ZenohSession, DeviceManager, DeviceInfo, Message, MessageType
 from common.security import AuthManager, TokenType
 from .models import (
@@ -22,6 +22,9 @@ from .models import (
     AuthResponse,
     ApiResponse
 )
+
+logger = getLogger(__name__)
+
 
 
 # 全局变量
