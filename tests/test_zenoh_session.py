@@ -6,7 +6,9 @@ import time
 import threading
 
 from smilex_zenoh_gateway.core import ZenohSession, Message, MessageType
-from smilex_zenoh_gateway.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 def test_basic_connect():

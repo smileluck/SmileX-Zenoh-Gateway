@@ -13,7 +13,9 @@ from smilex_zenoh_gateway.core import (
     DeviceInfo,
     DeviceStatus
 )
-from smilex_zenoh_gateway.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 def test_device_manager():

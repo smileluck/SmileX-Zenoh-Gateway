@@ -9,7 +9,9 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from copy import deepcopy
 
-from ..utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 class ZenohConfigManager:

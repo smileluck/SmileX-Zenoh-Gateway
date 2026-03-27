@@ -15,24 +15,12 @@
       "address": "224.0.0.224:7446"
     },
     "gossip": {
-      "enabled": false,
-      "seed": []
+      "enabled": false
     }
   },
   "transport": {
     "link": {
-      "tcp": {
-        "accept_timeout": "10s",
-        "accept_backlog": 100,
-        "max_sessions": 1000
-      },
-      "unix": {
-        "enabled": false
-      }
+      "tcp": {}
     }
-  },
-  "timestamping": {
-    "enabled": false,
-    "source": "local"
   }
 }

@@ -13,8 +13,9 @@ dependencies = [
     "pydantic-settings>=2.6.0",
     "python-multipart>=0.0.12",
     "aiosqlite>=0.20.0",
+    "opencv-python>=4.13.0.92",
 ]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = []
 

@@ -25,6 +25,7 @@ def main():
         if not session.connect():
             logger.error("无法连接到 Zenoh 网络")
             sys.exit(1)
+        
 
         device_mgr = DeviceManager(session)
         device_mgr.register_self("云端控制平台", "cloud")

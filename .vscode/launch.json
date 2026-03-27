@@ -38,11 +38,11 @@
             "name": "启动 Robot 服务",
             "type": "debugpy",
             "request": "launch",
-            "module": "robot.__main__",
+            "module": "robot",
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
+            // "env": {
+            //     "PYTHONPATH": "${workspaceFolder}/src"
+            // },
             "console": "integratedTerminal",
             "justMyCode": true
         },

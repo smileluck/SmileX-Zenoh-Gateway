@@ -15,7 +15,9 @@ import zenoh
 
 from ..config.settings import settings
 from ..config.zenoh_config import get_zenoh_config_manager
-from ..utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 class MessageType(Enum):

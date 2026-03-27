@@ -10,7 +10,9 @@ def test_import_config():
 
 def test_import_logger():
     """测试日志模块导入"""
-    from smilex_zenoh_gateway.utils.logger import logger
+    from logging import getLogger
+
+logger = getLogger(__name__)
     assert logger is not None
     print("✓ 日志模块导入成功")
 

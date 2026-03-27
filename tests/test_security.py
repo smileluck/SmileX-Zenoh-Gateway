@@ -11,7 +11,9 @@ from smilex_zenoh_gateway.security import (
     TokenInfo,
     TokenType
 )
-from smilex_zenoh_gateway.utils.logger import logger
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 def test_crypto():

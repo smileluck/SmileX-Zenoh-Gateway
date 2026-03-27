@@ -11,8 +11,12 @@ from dataclasses import dataclass, field
 from enum import Enum
 
 from ..config.settings import settings
-from ..utils.logger import logger
+from logging import getLogger
 from .zenoh_session import ZenohSession, Message, MessageType
+
+logger = getLogger(__name__)
+
+
 
 
 class DeviceStatus(Enum):
@@ -113,10 +117,16 @@ class DeviceManager:
         self._running = False
         
         if self._heartbeat_thread:
-            self._heartbeat_thread.join(timeout=2.0)
+            try:
+                self._heartbeat_thread.join(timeout=2.0)
+            except KeyboardInterrupt:
+                logger.warning("等待心跳线程结束时被中断")
         
         if self._check_thread:
-            self._check_thread.join(timeout=2.0)
+            try:
+                self._check_thread.join(timeout=2.0)
+            except KeyboardInterrupt:
+                logger.warning("等待检查线程结束时被中断")
         
         self._unsubscribe_all()
         
