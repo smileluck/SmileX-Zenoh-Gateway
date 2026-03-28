@@ -29,7 +29,7 @@ def main():
     pub = session.declare_publisher(
         "robot/camera/frame",
         reliability=zenoh.Reliability.BEST_EFFORT,
-        # congestion_control=zenoh.CongestionControl.DROP
+        congestion_control=zenoh.CongestionControl.DROP
     )
 
     # 图片加载

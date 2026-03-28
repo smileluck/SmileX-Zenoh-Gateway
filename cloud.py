@@ -47,7 +47,7 @@ def worker():
         # 解析头
         ts, batch_num = struct.unpack("dI", data[:12])
 
-        logger.info(f"batch_num={batch_num}, 延迟={time.time()-ts:.3f}s")
+        # logger.info(f"batch_num={batch_num}, 延迟={time.time()-ts:.3f}s")
 
         # 图片数据
         img_bytes = data[12:]
